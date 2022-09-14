@@ -1,0 +1,14 @@
+root = true
+
+[*]
+# Don't use tabs for indentation.
+indent_style = space
+# (Please don't specify an indent_size here; that has too many unintended consequences.)
+end_of_line = crlf
+
+# Code files
+[*.{cs,csx,vb,vbx,js,json,xml,xaml,md,sql,txt,cst,jst,html,css}]
+indent_size = 2
+insert_final_newline = true
+charset = utf-8
+trim_trailing_whitespace = true

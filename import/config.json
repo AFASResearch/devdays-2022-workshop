@@ -1,0 +1,8 @@
+{
+  "Steps": [
+    {
+      "DataFilePath": "AppClient.csv",
+      "MappingFilePath": "AppClient.json"
+    }
+  ]
+}

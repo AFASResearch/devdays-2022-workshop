@@ -1,0 +1,38 @@
+{
+     "DataEntity": "AppClient",
+     "FunctionalIdentification": "Name",
+     "FieldMappings": [
+          {
+               "SourceField": "Name",
+               "TargetField": "Name"
+          },
+          {
+               "SourceField": "Image",
+               "TargetField": "Image"
+          },
+          {
+               "SourceField": "ClientSecret",
+               "TargetField": "ClientSecret"
+          },
+          {
+               "SourceField": "ClientRedirectUrl",
+               "TargetField": "ClientRedirectUrl"
+          },
+          {
+               "SourceField": "ClientLandingPageUrl",
+               "TargetField": "ClientLandingPageUrl"
+          },
+          {
+               "SourceField": "accountant",
+               "TargetField": "accountant"
+          },
+          {
+               "SourceField": "partnerScan",
+               "TargetField": "partnerScan"
+          },
+          {
+               "SourceField": "profit",
+               "TargetField": "profit"
+          }
+     ]
+}
