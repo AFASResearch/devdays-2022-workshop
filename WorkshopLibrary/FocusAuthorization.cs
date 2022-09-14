@@ -9,7 +9,6 @@ public static class FocusAuthorization
   public static void SetUp(WebApplicationBuilder builder, string clientId, string clientSecret)
   {
     builder.Services.AddDistributedMemoryCache();
-    builder.Services.AddSession();
     builder.Services.AddAuthorization(options =>
     {
       options.AddPolicy("ConnectedToFocus", new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build());

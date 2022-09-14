@@ -16,20 +16,28 @@ public class FocusOAuthHandler: OAuthHandler<OAuthOptions>
 
   protected override string BuildChallengeUrl(AuthenticationProperties properties, string redirectUri)
   {
-    var afasBaseUrl = Context.Session.GetString("afasBaseUrl");
-    Options.AuthorizationEndpoint = afasBaseUrl + "/app/auth";
+    Options.AuthorizationEndpoint = GetAfasBaseUrl(Context) + "/app/auth";
     return base.BuildChallengeUrl(properties, redirectUri);
   }
 
   protected override Task<OAuthTokenResponse> ExchangeCodeAsync(OAuthCodeExchangeContext context)
   {
-    var afasBaseUrl = Context.Session.GetString("afasBaseUrl");
-    Options.TokenEndpoint = afasBaseUrl + "/app/token"; 
+    Options.TokenEndpoint = GetAfasBaseUrl(Context) + "/app/token"; 
     return base.ExchangeCodeAsync(context);
   }
 
   public static void RegisterAfasBaseUrl(HttpContext context, string afasBaseUrl)
   {
-    context.Session.SetString("afasBaseUrl", afasBaseUrl);
+    context.Response.Cookies.Append("afasBaseUrl", afasBaseUrl);
+  }
+
+  public static string GetAfasBaseUrl(HttpContext context)
+  {
+    var afasBaseUrl = context.Request.Cookies["afasBaseUrl"];
+    if (string.IsNullOrEmpty(afasBaseUrl))
+    {
+      throw new NotSupportedException("Could not find afasBaseUrl cookie");
+    }
+    return afasBaseUrl;
   }
 }
