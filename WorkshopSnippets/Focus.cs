@@ -5,7 +5,7 @@ public class FocusSnippets
     var accessToken = await Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.GetTokenAsync(context, "access_token");
     await Log("AccessToken " + accessToken);
 
-    var focusClient = new HttpClient();
+    using var focusClient = new HttpClient();
     focusClient.DefaultRequestHeaders.Add("AccessToken", accessToken);
   }
 
@@ -14,6 +14,6 @@ public class FocusSnippets
     var getOrganizationsUrl = FocusOAuthHandler.GetAfasBaseUrl(context) + "/api/organisaties-workshop";
     await Log("Querying " + getOrganizationsUrl);
     var organizations = await focusClient.GetFromJsonAsync<List<FocusOrganization>>(getOrganizationsUrl);
-    await Log(string.Format("Found {0} results", organizations.Count));
+    await Log(string.Format("Found {0} results", organizations!.Count));
   }
 }
