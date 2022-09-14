@@ -17,7 +17,7 @@ public class FocusOAuthHandler: OAuthHandler<OAuthOptions>
   protected override string BuildChallengeUrl(AuthenticationProperties properties, string redirectUri)
   {
     var afasBaseUrl = Context.Session.GetString("afasBaseUrl");
-    Options.AuthorizationEndpoint = afasBaseUrl + "/oauth2/authorize";
+    Options.AuthorizationEndpoint = afasBaseUrl + "/app/auth";
     return base.BuildChallengeUrl(properties, redirectUri);
   }
 
