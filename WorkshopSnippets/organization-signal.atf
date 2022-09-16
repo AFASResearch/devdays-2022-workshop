@@ -1,0 +1,17 @@
+<<template Template(source) format="json">>
+  {
+    "Signal": [
+      {
+        "Kind": "organization-signal",
+        "Id": "<<=\message.ToUuid()>>",
+        "Bron": {
+          "ComponentId": "Organisatie",
+          "Id": "<<=\organization>>"
+        },
+        "BronOmschrijving": "Een organisatie",
+        "Message": "<<=\message>>",
+        "IsLocked": false        
+      }
+    ]
+  }
+<</template>>
