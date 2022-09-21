@@ -7,7 +7,7 @@ static class LandingPage
   {
     app.MapGet("/landing-page", async (context) =>
     {
-      await context.SignOutAsync();
+      // await context.SignOutAsync();
       var focusUrl = context.Request.Query["afasBaseUrl"].Single();
       FocusOAuthHandler.RegisterFocusUrl(context, focusUrl);
       context.Response.ContentType = "text/html; charset=UTF-8";
