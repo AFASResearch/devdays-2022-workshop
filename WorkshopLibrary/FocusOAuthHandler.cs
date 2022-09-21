@@ -16,28 +16,28 @@ public class FocusOAuthHandler: OAuthHandler<OAuthOptions>
 
   protected override string BuildChallengeUrl(AuthenticationProperties properties, string redirectUri)
   {
-    Options.AuthorizationEndpoint = GetAfasBaseUrl(Context) + "/app/auth";
+    Options.AuthorizationEndpoint = GetFocusUrl(Context) + "/app/auth";
     return base.BuildChallengeUrl(properties, redirectUri);
   }
 
   protected override Task<OAuthTokenResponse> ExchangeCodeAsync(OAuthCodeExchangeContext context)
   {
-    Options.TokenEndpoint = GetAfasBaseUrl(Context) + "/app/token"; 
+    Options.TokenEndpoint = GetFocusUrl(Context) + "/app/token"; 
     return base.ExchangeCodeAsync(context);
   }
 
-  public static void RegisterAfasBaseUrl(HttpContext context, string afasBaseUrl)
+  public static void RegisterFocusUrl(HttpContext context, string focusUrl)
   {
-    context.Response.Cookies.Append("afasBaseUrl", afasBaseUrl);
+    context.Response.Cookies.Append("focusUrl", focusUrl);
   }
 
-  public static string GetAfasBaseUrl(HttpContext context)
+  public static string GetFocusUrl(HttpContext context)
   {
-    var afasBaseUrl = context.Request.Cookies["afasBaseUrl"];
-    if (string.IsNullOrEmpty(afasBaseUrl))
+    var focusUrl = context.Request.Cookies["focusUrl"];
+    if (string.IsNullOrEmpty(focusUrl))
     {
-      throw new NotSupportedException("Could not find afasBaseUrl cookie");
+      throw new NotSupportedException("Could not find focusUrl cookie");
     }
-    return afasBaseUrl;
+    return focusUrl;
   }
 }

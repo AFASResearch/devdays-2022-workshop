@@ -26,7 +26,7 @@ public static class FocusAuthorization
       .AddCookie() // cookie authentication middleware first
       .AddOAuth<OAuthOptions, FocusOAuthHandler>("Focus", oauthOptions =>
       {
-        oauthOptions.AuthorizationEndpoint = "."; // To be set later in FocusOAuthHandler using afasBaseUrl in Session 
+        oauthOptions.AuthorizationEndpoint = "."; // To be set later in FocusOAuthHandler using focusUrl in Session 
         oauthOptions.TokenEndpoint = "."; // To be set later in FocusOAuthHandler
         oauthOptions.ClientId = clientId;
         oauthOptions.ClientSecret = clientSecret;
