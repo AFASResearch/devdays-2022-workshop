@@ -1,4 +1,5 @@
 using System.Web;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Authentication;
 
 static class LandingPage
@@ -7,7 +8,11 @@ static class LandingPage
   {
     app.MapGet("/landing-page", async (context) =>
     {
-      // await context.SignOutAsync();
+      try 
+      {
+        await context.SignOutAsync();
+      }
+      catch (Exception) { /* Probably no authentication yet */ }
       var focusUrl = context.Request.Query["afasBaseUrl"].Single();
       FocusOAuthHandler.RegisterFocusUrl(context, focusUrl);
       context.Response.ContentType = "text/html; charset=UTF-8";
